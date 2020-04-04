@@ -2,8 +2,8 @@ import pandas as pd
 
 def get_data_links(link_for_urls):
     csv_links = []
-    testpandasread = pd.read_html(link_for_urls)
-    for link_pd in testpandasread[0].Name:
+    link_table = pd.read_html(link_for_urls)
+    for link_pd in link_table[0].Name:
         if link_pd[-3:] == 'csv' :
             csv_links.append(link_pd)
     return csv_links
