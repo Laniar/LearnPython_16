@@ -16,6 +16,17 @@ def extract_csv(csv_links):
         df_covid_raw = pd.read_csv(url_covid_csv, error_bad_lines=False)
         raw_data_list.append(df_covid_raw)
     raw_data = pd.concat(raw_data_list)
+    #clear dataset
+    raw_data['Last Update'].update(raw_data['Last_Update'])
+    raw_data['Province/State'].update(raw_data['Province_State'])
+    raw_data['Country/Region'].update(raw_data['Country_Region'])
+    raw_data['Latitude'].update(raw_data['Lat'])
+    raw_data['Longitude'].update(raw_data['Long_'])
+    raw_data['Confirmed'].fillna(0)
+    raw_data['Deaths'].fillna(0)
+    raw_data['Recovered'].fillna(0)
+    raw_data['Last Update'] = pd.to_datetime(raw_data['Last Update'])
+    raw_data['Last_Update'] = pd.to_datetime(raw_data['Last_Update'])
     return raw_data
 
 if __name__ == "__main__":
